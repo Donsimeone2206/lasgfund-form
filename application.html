@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LASGFund Loan Application Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+        :root {
+            --primary-color: #6eb0ec;
+            --text-dark: #111827;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --max-width: 1200px;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Raleway", sans-serif;
+        }
+
+        h2 {
+            color: var(--text-dark);
+        }
+
+        h2.fs-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .fieldlabels {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .input-group label,
+        .input-group input {
+            width: 100%;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid var(--text-light);
+            border-radius: 5px;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        input[type="button"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+            background-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover,
+        input[type="submit"]:hover {
+            background-color: var(--primary-color);
+            opacity: 0.7;
+        }
+
+        #msform {
+            max-width: var(--max-width);
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        #progressbar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding: 0;
+            list-style-type: none;
+            counter-reset: step;
+            overflow: hidden;
+            position: relative;
+            flex-direction: column;
+        }
+
+        #progressbar li {
+            position: relative;
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-light);
+            counter-increment: step;
+        }
+
+        #progressbar li::before {
+            content: counter(step);
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            display: block;
+            margin: 0 auto 10px auto;
+            background: var(--text-light);
+            color: var(--white);
+            border-radius: 50%;
+        }
+
+        #progressbar li.completed::before {
+            content: "✔";
+            background: #a6fbb2;
+            color: var(--white);
+        }
+
+        #progressbar li.active::before {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        fieldset {
+            display: none;
+            border: none;
+        }
+
+        fieldset.show {
+            display: block;
+        }
+
+        .form-card {
+            text-align: left;
+        }
+
+        .form-card input,
+        .form-card select {
+            margin-bottom: 10px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            #msform {
+                padding: 3rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #msform {
+                padding: 4rem;
+            }
+
+            fieldset {
+                padding: 0 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="msform">
+        <!-- Progressbar -->
+        <ul id="progressbar">
+            <li class="active">Personal Information</li>
+            <li>Employment Details</li>
+            <li>Loan Details</li>
+            <li>Financial Information</li>
+            <li>Guarantor Information</li>
+            <li>Document Upload</li>
+            <li>Declarations</li>
+            <li>Submit Application</li>
+        </ul>
+
+        <fieldset class="show">
+            <div class="form-card">
+                <h2 class="fs-title">Personal Information</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Full Name:</label>
+                        <input type="text" name="full_name" />
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Employee ID:</label>
+                        <input type="text" name="employee_id" />
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Oracle Number:</label>
+                        <input type="text" name="oracle_number" />
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Date of Birth:</label>
+                        <input type="date" name="dob" />
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Gender:</label>
+                        <select name="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Contact Number:</label>
+                        <input type="text" name="contact_number" />
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Email Address:</label>
+                        <input type="email" name="email" />
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Home Address:</label>
+                        <input type="text" name="home_address" />
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Grade Level:</label>
+                        <select name="grade_level">
+                            <!-- Add options for levels 1-17 -->
+                            <option value="1">Level 1</option>
+                            <option value="2">Level 2</option>
+                            <option value="3">Level 3</option>
+                            <option value="4">Level 4</option>
+                            <option value="5">Level 5</option>
+                            <option value="6">Level 6</option>
+                            <option value="7">Level 7</option>
+                            <option value="8">Level 8</option>
+                            <option value="9">Level 9</option>
+                            <option value="10">Level 10</option>
+                            <option value="11">Level 11</option>
+                            <option value="12">Level 12</option>
+                            <option value="13">Level 13</option>
+                            <option value="14">Level 14</option>
+                            <option value="15">Level 15</option>
+                            <option value="16">Level 16</option>
+                            <option value="17">Level 17</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Department/Ministry:</label>
+                        <input type="text" name="department_ministry" />
+                    </div>
+                </div>
+            </div>
+            <input type="button" name="next" class="next action-button" value="Next" />
+        </fieldset>
+
+        <!-- Employment Details -->
+        <fieldset>
+            <div class="form-card">
+                <h2 class="fs-title">Employment Details</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Current Position:</label>
+                        <input type="text" name="current_position" />
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Date of Employment:</label>
+                        <input type="date" name="date_of_employment" />
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Current Grade Level:</label>
+                        <select name="current_grade_level">
+                            <!-- Add options for levels 1-17 -->
+                            <option value="1">Level 1</option>
+                            <!-- Add more levels as needed -->
+                            <option value="17">Level 17</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Monthly Gross Income:</label>
+                        <input type="text" name="monthly_gross_income" />
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Monthly Net Income (Take-Home Salary):</label>
+                        <input type="text" name="monthly_net_income" />
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Oracle Number:</label>
+                        <input type="text" name="oracle_number" />
+                    </div>
+                </div>
+            </div>
+            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+            <input type="button" name="next" class="next action-button" value="Next" />
+
+        </fieldset>
+
+        <!-- Loan Details -->
+        <fieldset>
+            <div class="form-card">
+                <h2 class="fs-title">Loan Details</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Loan Type:</label>
+                        <div>
+                            <input type="checkbox" name="loan_type" value="Car Refurbishment Loan" /> Car
+                            Refurbishment Loan
+                        </div>
+                        <div>
+                            <input type="checkbox" name="loan_type" value="Housing Loan" /> Housing Loan
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Requested Loan Amount:</label>
+                        <input type="text" name="requested_loan_amount" />
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Purpose of the Loan:</label>
+                        <input type="text" name="purpose_of_loan" />
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Repayment Term (Years):</label>
+                        <input type="text" name="repayment_term" value="5 Years" />
+                    </div>
+                </div>
+            </div>
+            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+            <input type="button" name="next" class="next action-button" value="Next" />
+        </fieldset>
+
+        <!-- Financial Information -->
+        <fieldset>
+            <div class="form-card">
+                <h2 class="fs-title">Financial Information</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Bank Name:</label>
+                        <input type="text" name="bank_name" />
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Bank Account Number:</label>
+                        <input type="text" name="bank_account_number" />
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Current Loan(s) with Other Institutions:</label>
+                        <div>
+                            <input type="radio" name="current_loans" value="Yes" /> Yes
+                            <input type="radio" name="current_loans" value="No" /> No
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Current Loan Amount:</label>
+                        <input type="text" name="current_loan_amount" />
+                    </div>
+                </div>
+            </div>
+            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+            <input type="button" name="next" class="next action-button" value="Next" />
+
+        </fieldset>
+
+        <!-- Guarantor Information -->
+        <fieldset>
+            <div class="form-card">
+                <h2 class="fs-title">Guarantor Information</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Guarantor Name:</label>
+                        <input type="text" name="guarantor_name" />
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Guarantor Position:</label>
+                        <input type="text" name="guarantor_position" />
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Guarantor Contact Number:</label>
+                        <input type="text" name="guarantor_contact_number" />
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Guarantor Email Address:</label>
+                        <input type="email" name="guarantor_email" />
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Guarantor's Home Address:</label>
+                        <input type="text" name="guarantor_home_address" />
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Guarantor's Relationship with Applicant:</label>
+                        <input type="text" name="guarantor_relationship" />
+                    </div>
+                </div>
+            </div>
+            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+            <input type="button" name="next" class="next action-button" value="Next" />
+        </fieldset>
+
+        <!-- Document Upload -->
+        <fieldset>
+            <div class="form-card">
+                <h2 class="fs-title">Document Upload</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Upload Valid Utility Bill:</label>
+                        <input type="file" name="utility_bill" />
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Upload Recent Payslip:</label>
+                        <input type="file" name="recent_payslip" />
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Upload a Recent Passport Photograph:</label>
+                        <input type="file" name="passport_photo" />
+                    </div>
+                    <div class="input-group">
+                        <label class="fieldlabels">Upload Signature:</label>
+                        <input type="file" name="signature" />
+                    </div>
+                </div>
+            </div>
+            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+            <input type="button" name="next" class="next action-button" value="Next" />
+        </fieldset>
+
+        <!-- Declarations -->
+        <fieldset>
+            <div class="form-card">
+                <h2 class="fs-title">Declarations</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="fieldlabels">Declaration:</label>
+                        <textarea name="declaration" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+            <input type="button" name="next" class="next action-button" value="Next" />
+        </fieldset>
+
+        <!-- Submit Application -->
+        <fieldset>
+            <div class="form-card">
+                <h2 class="fs-title">Submit Application</h2>
+                <p>Please review all the information provided before submitting your application.</p>
+            </div>
+            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+            <input type="submit" name="submit" class="submit action-button" value="Submit" />
+        </fieldset>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var opacity;
+
+            $(".next").click(function() {
+                current_fs = $(this).parent();
+                next_fs = $(this).parent().next();
+
+                //Add Class Active
+                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+                previous_fs = $(this).parent().prev();
+                // set current #progressbar li::before content to ✔
+                //console.log($("#progressbar li::before").eq($("fieldset").index(current_fs)));
+                //$("#progressbar li::before").eq($("fieldset").index(current_fs)).innerText="✔";
+
+                //Remove class active
+                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+                $("#progressbar li").eq($("fieldset").index(current_fs)).addClass("completed");
+
+                //show the next fieldset
+                next_fs.show();
+                //hide the current fieldset with style
+                current_fs.animate({
+                    opacity: 0
+                }, {
+                    step: function(now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        next_fs.css({
+                            'opacity': opacity
+                        });
+                    },
+                    duration: 500
+                });
+            });
+
+            $(".previous").click(function() {
+                current_fs = $(this).parent();
+                previous_fs = $(this).parent().prev();
+
+                //Remove class active
+                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+                //show the previous fieldset
+                previous_fs.show();
+                //hide the current fieldset with style
+                current_fs.animate({
+                    opacity: 0
+                }, {
+                    step: function(now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        previous_fs.css({
+                            'opacity': opacity
+                        });
+                    },
+                    duration: 500
+                });
+            });
+
+            $(".submit").click(function() {
+                return false;
+            })
+        });
+    </script>
+
+</body>
+
+</html>
