@@ -232,19 +232,32 @@ fieldset.show {
     margin-bottom: 2rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .input-row {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    #msform {
-        padding: 2rem;
-        flex-direction: column;
-    }
-
-    fieldset {
-        width: 100%;
-    }
+.review-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
 }
+
+.review-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.review-card .edit-step {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.review-card .edit-step:hover {
+    background-color: #0056b3;
+}
+
+
+/* Responsive screens*/

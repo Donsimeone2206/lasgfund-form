@@ -146,42 +146,28 @@ nav {
   line-height: 1.75rem;
 }
 
-.header__container form {
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: space-between; */
-  /* flex-direction: column; */
+ form {
   background-color: #f6f4f7;
   border-radius: 10px;
 }
 
-.header__container .input__row {
-  padding: 1rem;
+.input__row {
+  padding: 0.5rem;
   display: flex;
   justify-content: space-around;
   /* align-items: center; */
   /* gap: 1rem; */
   /* flex: 1; */
 }
-
-.header__container .input__group {
+ .input__group {
   display: flex;
   align-items: center;
   gap: 5px;
-}
-
-.header__container .input__group span {
   color: var(--text-dark);
 }
-
-.header__container .desc {
-  width: 100%;
-  outline: none;
-  border: none;
-  font-size: 1rem;
-  background-color: transparent;
+ .input__group span {
+  color: var(--text-dark);
 }
-
 
 .apply-btn {
   padding: 0.5rem 1rem;
@@ -192,9 +178,8 @@ nav {
   color: var(--white);
   background-color: var(--primary-color);
   border-radius: 10px;
-  /* cursor: pointer; */
-  
 }
+
 
 .app {
   display: flex;
@@ -215,7 +200,6 @@ nav {
   grid-template-columns: 1fr;
   gap: 1.5rem;
   justify-content: center;
-  /* justify-content: space-between; */
 }
 
 .app__loan-card {
@@ -234,7 +218,7 @@ nav {
 }
 
 .app__loan-card--housing {
-  background-color: #00B050;
+  background-color: #FDC46B;
 }
 
 .app__loan-card-title {
@@ -248,10 +232,26 @@ nav {
 
 
 @media (max-width: 539px) {
-  .header__container .input__row {
+  .nav__contact {
+    text-align: center;
+    flex-direction: column;
+  }
+  .header__container {
+    padding: 1rem;
+    text-align: center;
+}
+  .input__row {
     flex-direction: column;
     gap: 1rem;
   }
+  .header__container h1 {
+    font-size: 2rem;
+    line-height: 3rem;
+}
+.app__loan-card {
+  margin: 0 auto;
+  width: 100%;
+}
 }
 
 @media (min-width: 540px) {
@@ -291,15 +291,17 @@ nav {
 
   .app__loan-cards {
     grid-template-columns: repeat(2, 1fr);
+   
   }
+  
 }
 
 @media (min-width: 1024px) {
-  .header__container form {
+   form {
     flex-direction: row;
   }
 
-  .header__container button {
+   button {
     width: fit-content;
   }
 }

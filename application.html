@@ -3,6 +3,7 @@
 
 <head>
     <title>LASGFund Loan Application Form</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/form.css" />
 </head>
@@ -17,17 +18,42 @@
     <div id="msform">
         <!-- Progressbar -->
         <ul id="progressbar">
-            <li class="active" data-step="0">Personal Information</li>
-            <li data-step="1">Employment Details</li>
-            <li data-step="2">Loan Details</li>
-            <li data-step="3">Financial Information</li>
-            <li data-step="4">Guarantor Information</li>
-            <li data-step="5">Document Upload</li>
-            <li data-step="6">Declarations</li>
-            <li data-step="7">Submit Application</li>
+            <li class="active" data-step="0">Eligibility</li>
+            <li data-step="1">Personal Information</li>
+            <li data-step="2">Employment Details</li>
+            <li data-step="3">Loan Details</li>
+            <li data-step="4">Financial Information</li>
+            <li data-step="5">Guarantor Information</li>
+            <li data-step="6">Document Upload</li>
+            <li data-step="8">Reveiew and Submit Application</li>
         </ul>
 
+        <!-- Eligibility -->
         <fieldset class="show">
+            <div class="form-card">
+                <h2 class="fs-title">Eligibility</h2>
+                <div class="">
+                    <ul class="">
+                        <li class="">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+                        <li class="">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+                        <li class="">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+                        <li class="">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+                        <li class="">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+
+                    </ul>
+                    <div class="" style="display: flex; gap: 6px;">
+                        <input type="checkbox" name="eligibility" value="Yes" id="eligibility" required />
+                        <label class="">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt."</label>
+                    </div>
+                </div>
+            </div>
+            <input type="button" name="next" class="next action-button" value="Next" />
+        </fieldset>
+
+
+        <!-- Personal information -->
+        <fieldset class="" data-step="1">
             <div class="form-card">
                 <h2 class="fs-title">Personal Information</h2>
                 <div class="input-row">
@@ -104,11 +130,12 @@
                     </div>
                 </div>
             </div>
+            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
             <input type="button" name="next" class="next action-button" value="Next" />
         </fieldset>
 
         <!-- Employment Details -->
-        <fieldset>
+        <fieldset data-step="2">
             <div class="form-card">
                 <h2 class="fs-title">Employment Details</h2>
                 <div class="input-row">
@@ -167,7 +194,7 @@
         </fieldset>
 
         <!-- Loan Details -->
-        <fieldset>
+        <fieldset data-step="3">
             <div class="form-card">
                 <h2 class="fs-title">Loan Details</h2>
                 <div class="input-row">
@@ -202,7 +229,7 @@
         </fieldset>
 
         <!-- Financial Information -->
-        <fieldset>
+        <fieldset data-step="4">
             <div class="form-card">
                 <h2 class="fs-title">Financial Information</h2>
                 <div class="input-row">
@@ -241,7 +268,7 @@
 
 
         <!-- Guarantor Information -->
-        <fieldset>
+        <fieldset data-step="5">
             <div class="form-card">
                 <h2 class="fs-title">Guarantor Information</h2>
                 <div class="input-row">
@@ -286,7 +313,7 @@
                     </div>
                     <div class="input-group">
                         <label class="fieldlabels">Guarantor's Monthly Net Income:</label>
-                        <input type="email" name="guarantor_net_income" required />
+                        <input type="text" name="guarantor_net_income" required />
                     </div>
                 </div>
             </div>
@@ -295,7 +322,7 @@
         </fieldset>
 
         <!-- Document Upload -->
-        <fieldset>
+        <fieldset data-step="6">
             <div class="form-card">
                 <h2 class="fs-title">Document Upload</h2>
                 <div class="input-row">
@@ -334,7 +361,7 @@
         </fieldset>
 
         <!-- Declarations -->
-        <fieldset>
+        <!-- <fieldset>
             <div class="form-card">
                 <h2 class="fs-title">Declarations</h2>
                 <div class="">
@@ -354,17 +381,73 @@
             </div>
             <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
             <input type="button" name="next" class="next action-button" value="Next" />
-        </fieldset>
+        </fieldset> -->
 
-        <!-- Submit Application -->
-        <fieldset>
+        <!-- Review & Submit -->
+        <fieldset class="review">
             <div class="form-card">
-                <h2 class="fs-title">Submit Application</h2>
-                <p>Please review all the information provided before submitting your application.</p>
-                <div id="review-data"></div> <!-- This will display the review information -->
+                <h2 class="fs-title">Review & Submit Application</h2>
+
+                <!-- Review Personal Information -->
+                <div class="review-card" id="review-card-1" >
+                    <h3>Personal Information</h3>
+                    <div class="review-content"></div>
+                    <button type="button" class="edit-step" data-step="1">Edit</button>
+                </div>
+
+                <!-- Review Employment Details -->
+                <div class="review-card" id="review-card-2">
+                    <h3>Employment Details</h3>
+                    <div class="review-content"></div>
+                    <button type="button" class="edit-step" data-step="2">Edit</button>
+                </div>
+
+                <!-- Review Loan Details -->
+                <div class="review-card" id="review-card-3">
+                    <h3>Loan Details</h3>
+                    <div class="review-content"></div>
+                    <button type="button" class="edit-step" data-step="3">Edit</button>
+                </div>
+
+                <!-- Review Financial Information -->
+                <div class="review-card" id="review-card-4">
+                    <h3>Financial Information</h3>
+                    <div class="review-content"></div>
+                    <button type="button" class="edit-step" data-step="4">Edit</button>
+                </div>
+
+                <!-- Review Guarantor Information -->
+                <div class="review-card" id="review-card-5">
+                    <h3>Guarantor Information</h3>
+                    <div class="review-content"></div>
+                    <button type="button" class="edit-step" data-step="5">Edit</button>
+                </div>
+
+                <!-- Review Document Upload -->
+                <div class="review-card" id="review-card-6">
+                    <h3>Document Upload</h3>
+                    <div class="review-content"></div>
+                    <button type="button" class="edit-step" data-step="6">Edit</button>
+                </div>
+                <!-- Declaration -->
+                <div style="margin-top: 7px;">
+                    <div class="" style="display: flex; gap: 6px;">
+                        <input type="checkbox" name="declaration" value="Yes" id="declaration-yes" required />
+                            <label class="">"I hereby declare that the information provided is true and accurate to the best
+                                of my knowledge. I understand that any falsification of information may lead to
+                                disqualification from this loan program."</label>
+                        </div>
+                    <div class="input-row">
+                        <div class="" style="margin-top: 30px;">
+                            <label class="fieldlabels">Upload Signature:</label>
+                            <input type="file" name="signature" required />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> -->
+                <input type="submit" name="submit" class="submit action-button" value="Submit Application" />
             </div>
-            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-            <input type="submit" name="submit" class="submit action-button" value="Submit" />
         </fieldset>
 
     </div>

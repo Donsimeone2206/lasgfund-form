@@ -3,139 +3,102 @@ $(document).ready(function () {
     var opacity;
     var isValid;
 
-    // Function to validate required fields in the current fieldset
-    function validateCurrentFieldset() {
-        isValid = true;
-        current_fs.find('input, select, textarea').each(function () {
-            var $this = $(this);
-            $this.removeClass('error'); // Remove previous error class
+    // Function to get data from the form fields and populate the corresponding review section
+    function populateReviewSection(step) {
+        var reviewContent = "";
+        var stepFields = $(`fieldset[data-step='${step}']`).find(':input').not(':button');
 
-            if ($this.prop('required') && !$this.val()) {
-                $this.addClass('error');
-                isValid = false;
-            }
+        stepFields.each(function () {
+            var label = $(this).siblings('label').text() || $(this).closest('.input-group').find('label').text();
+            var value;
 
-            if ($this.attr('name') === 'contact_number' || $this.attr('name') === 'guarantor_contact_number') {
-                var contact_number = $this.val();
-                if (!/^\d{11}$/.test(contact_number)) {
-                    $this.addClass('error');
-                    isValid = false;
+            if ($(this).is(':radio')) {
+                // For radio buttons, display the checked value
+                label = $(this).closest('.input-group').find('label.fieldlabels').text();
+                if ($(this).is(':checked')) {
+                    value = $(this).val();
+                    reviewContent += `<p><strong>${label}</strong> ${value}</p>`;
                 }
-            }
-
-            if ($this.attr('name') === 'email' || $this.attr('name') === 'guarantor_email') {
-                var email = $this.val();
-                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    $this.addClass('error');
-                    isValid = false;
+            } else if ($(this).is(':checkbox')) {
+                // For checkboxes, display the checked values
+                if ($(this).is(':checked')) {
+                    value = $(this).val();
+                    reviewContent += `<p><strong>${label}</strong> ${value}</p>`;
                 }
+            } else if ($(this).attr('type') === 'file') {
+                // For file inputs, display the selected file name
+                value = $(this)[0].files.length > 0 ? $(this)[0].files[0].name : 'No file chosen';
+                reviewContent += `<p><strong>${label}</strong> ${value}</p>`;
+            } else {
+                // For other input types (text, email, etc.)
+                value = $(this).val();
+                reviewContent += `<p><strong>${label}</strong> ${value}</p>`;
             }
         });
-        return isValid;
+
+        $(`#review-card-${step} .review-content`).html(reviewContent);
     }
 
+    // Function to handle step transitions
     $(".next").click(function () {
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
 
-        if (!validateCurrentFieldset()) {
-            alert("Please fill all required fields correctly.");
-            return false;
-        }
-
-        // If the next step is the Submit Application step, display the review data
-        if ($(next_fs).find("#review-data").length > 0) {
-            var formData = {};
-            $('#msform').find('input, select, textarea').each(function () {
-                var name = $(this).attr('name');
-                var value;
-                var label;
-    
-                // Get the value and label for file inputs
-                if ($(this).attr('type') === 'file') {
-                    value = $(this)[0].files.length > 0 ? $(this)[0].files[0].name : 'No file chosen';
-                    label = $(this).closest('.input-group').find('label').text();
-                }
-                // Get the value and label for radio inputs
-                else if ($(this).attr('type') === 'radio') {
-                    if ($(this).is(':checked')) {
-                        value = $(this).val();
-                        label = $(this).closest('.input-group').find('label.fieldlabels').text();
-                    }
-                }
-                // Get the value and label for checkboxes
-                else if ($(this).attr('type') === 'checkbox') {
-                    if ($(this).is(':checked')) {
-                        value = $(this).val();
-                        label = $(this).closest('.input-group').find('label.fieldlabels').text();
-                    }
-                }
-                // Get the value and label for select elements
-                else if ($(this).is('select')) {
-                    value = $(this).val();
-                    label = $(this).closest('.input-group').find('label.fieldlabels').text();
-                }
-                // For other input types (text, email, etc.)
-                else {
-                    value = $(this).val();
-                    label = $(this).closest('.input-group').find('label.fieldlabels').text();
-                }
-    
-                if (label && value) {
-                    formData[label] = value;
-                }
-            });
-    
-            // Display the review data
-            var reviewHtml = '<ol>';
-            $.each(formData, function (key, value) {
-                reviewHtml += '<li><strong>' + key + '</strong>: ' + value + '</li>';
-            });
-            reviewHtml += '</ol>';
-            $('#review-data').html(reviewHtml);
-        }
-
-        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-        next_fs.show();
-
-        current_fs.animate({ opacity: 0 }, {
-            step: function (now) {
-                opacity = 1 - now;
-                current_fs.css({ 'display': 'none', 'position': 'relative' });
-                next_fs.css({ 'opacity': opacity });
-            },
-            duration: 600
+        isValid = true; // reset validation flag
+        current_fs.find(':input').each(function () {
+            if (!this.checkValidity()) {
+                isValid = false;
+                $(this).addClass('invalid');
+                $(this)[0].reportValidity();
+            } else {
+                $(this).removeClass('invalid');
+            }
         });
+
+        if (isValid) {
+            populateReviewSection(current_fs.data('step'));
+
+            // Add class active to the next step in the progress bar
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            // Set current step to completed (add a checkmark)
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active").addClass("completed");
+
+            // Show the next fieldset
+            next_fs.show();
+            current_fs.hide();
+        }
     });
 
     $(".previous").click(function () {
         current_fs = $(this).parent();
         previous_fs = $(this).parent().prev();
 
+        // Remove class active from the current step in the progress bar
         $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
         previous_fs.show();
-
-        current_fs.animate({ opacity: 0 }, {
-            step: function (now) {
-                opacity = 1 - now;
-                current_fs.css({ 'display': 'none', 'position': 'relative' });
-                previous_fs.css({ 'opacity': opacity });
-            },
-            duration: 600
-        });
+        current_fs.hide();
     });
 
-    $("input[type='submit']").click(function () {
-        // Optionally validate one last time before submission
-        if (!validateCurrentFieldset()) {
-            alert("Please fill all required fields correctly.");
-            return false; // Prevent form submission
+    // Handle edit button clicks in review section
+    $(".edit-step").click(function () {
+        var step = $(this).data('step');
+        var target_fs = $(`fieldset[data-step='${step}']`);
+
+        $('.review').hide();
+        target_fs.show();
+    });
+
+    // On form submission, populate all review sections
+    $("form").on("submit", function (event) {
+        // event.preventDefault(); // prevent form submission for demo
+
+        for (var step = 1; step <= 6; step++) {
+            populateReviewSection(step);
         }
 
-        // Submit the form
-        alert("Loan application submitted successfully");
-        return true; // Allow the form to be submitted
+        // Show the review and submit section
+        $("fieldset:last").show();
     });
 
     // Show or hide loan details based on current loans radio button
