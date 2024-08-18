@@ -39,7 +39,7 @@ $(document).ready(function () {
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
 
-        if (validateCurrentFieldset()) {
+        if (!validateCurrentFieldset()) {
             alert("Please fill all required fields correctly.");
             return false;
         }
@@ -128,7 +128,7 @@ $(document).ready(function () {
 
     $("input[type='submit']").click(function () {
         // Optionally validate one last time before submission
-        if (validateCurrentFieldset()) {
+        if (!validateCurrentFieldset()) {
             alert("Please fill all required fields correctly.");
             return false; // Prevent form submission
         }
