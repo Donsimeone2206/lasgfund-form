@@ -48,7 +48,7 @@
             <img src="assets/images/home/hero1.jpg" alt="header" />
         </div>
         <div class="header__content">
-            <h1>Welcome to  <span>LASGFUND</span> loan application platform.</h1>
+            <h1>Welcome to <span>LASGFUND</span> loan application platform.</h1>
             <p>
                 Take the first step towards achieving your aspirations with Loan Connect. Whether it's a new car, a home
                 renovation, or consolidating your finances, our tailored loans offer the support you need. Experience a
@@ -61,27 +61,55 @@
                     <div class="input__group status">
                         <span><i class="ri-map-pin-line"></i></span>
                         <h5>Status</h5>
-                        <span class="desc" >Open</span>
+                        <span class="desc">Open</span>
                     </div>
                     <div class="input__group">
                         <span><i class="ri-calendar-2-line"></i></span>
                         <h5>Deadline</h5>
-                        <span class="desc" >Dec, 17, 2024</span>
+                        <span class="desc">Dec, 17, 2024</span>
                     </div>
-                    <div class="input__group">
-                        <select name="type" id="loan">
-                            <option value="">Select Loan</option>
-                            <option value="housing">Housing Loan</option>
-                            <option value="car">Car Loan</option>
-                        </select>
-                    </div>
-                </div>
+                    <!-- <a class="apply-btn" href="./application.html">Apply</a> -->
+                     <button class="apply-btn">
+                        <a href="./application.html">
+                            Apply
+                        </a>
+                     </button>
 
-                <a class="apply-btn" href="./application.html">Apply</a>
+                </div>
             </form>
         </div>
     </header>
 
+    <section class="app">
+        <div class="app__loan-list">
+            <div class="app__loan-cards">
+                <a href="./loan/car-loan.html">
+                    <div class="app__loan-card">
+                        <h3 class="app__loan-card-title">Car Refurbishment Loan</h3>
+                        <p class="app__loan-card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consectetur, eros ut
+                            vulputate vehicula, velit odio lacinia elit, eu lacinia metus libero ac odio. Curabitur
+                            vitae libero et sapien convallis commodo. Donec vestibulum est nec est sollicitudin, ac
+                            vestibulum erat tincidunt. Fusce feugiat dui a felis laoreet, ut suscipit est iaculis.
+                            Suspendisse potenti. Aliquam erat volutpat. Suspendisse potenti.
+                        </p>
+                    </div>
+                </a>
+                <a href="./loan/housing-loan.html">
+                    <div class="app__loan-card app__loan-card--housing">
+                        <h3 class="app__loan-card-title">Housing Loan</h3>
+                        <p class="app__loan-card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consectetur, eros ut
+                            vulputate vehicula, velit odio lacinia elit, eu lacinia metus libero ac odio. Curabitur
+                            vitae libero et sapien convallis commodo. Donec vestibulum est nec est sollicitudin, ac
+                            vestibulum erat tincidunt. Fusce feugiat dui a felis laoreet, ut suscipit est iaculis.
+                            Suspendisse potenti. Aliquam erat volutpat. Suspendisse potenti.
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="assets/js/main.js"></script>
 </body>

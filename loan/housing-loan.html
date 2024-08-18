@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Housing Loan - Eligibility</title>
+  <link rel="stylesheet" href="../assets/css/loan.css">
+</head>
+<body>
+  <section class="loan">
+    <div class="loan__container">
+      <a href="../index.html">
+        <div class="nav__logo">
+          <div>L</div>
+          LASGFUND
+      </div>
+      </a>
+      <h1 class="loan__title">Housing Loan</h1>
+      <p class="loan__subtitle">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+      </p>
+      <a href="../application.html">
+        <button class="loan__request-btn loan__request-btn--inactive" disabled>Request Loan</button>
+      </a>
+
+      <div class="loan-requirements">
+        <h2 class="loan-details__title">Loan Details</h2>
+        <ul class="loan-requirements__list">
+          <li class="loan-requirements__item">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+          <li class="loan-requirements__item">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+          <li class="loan-requirements__item">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+          <li class="loan-requirements__item">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+          <li class="loan-requirements__item">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+          
+        </ul>
+
+        <div class="loan-requirements">
+          <h3 class="loan-requirements__title">Loan Requirements</h3>
+          <ul class="loan-requirements__list">
+            <li class="loan-requirements__item">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+            <li class="loan-requirements__item">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+            <li class="loan-requirements__item">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+            <li class="loan-requirements__item">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+            <li class="loan-requirements__item">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+            
+          </ul>
+        </div>
+
+        <div class="commitment">
+          <label class="commitment__label">
+            <input type="checkbox" class="commitment__checkbox" id="commitment-checkbox">
+            Commitment Statement: I have read and meet the eligibility criteria.
+          </label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const checkbox = document.getElementById('commitment-checkbox');
+    const requestBtn = document.querySelector('.loan__request-btn');
+
+    checkbox.addEventListener('change', function () {
+      if (this.checked) {
+        requestBtn.disabled = false;
+        requestBtn.classList.remove('loan__request-btn--inactive');
+        requestBtn.classList.add('loan__request-btn--active');
+        requestBtn.href = '../application.html';
+      } else {
+        requestBtn.disabled = true;
+        requestBtn.classList.remove('loan__request-btn--active');
+        requestBtn.classList.add('loan__request-btn--inactive');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f5f7fa;
+    --accent-color: #00B050;
+    --text-dark: #2c3e50;
+    --text-light: #7f8c8d;
+    --white: #ffffff;
+    --max-width: 1200px;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
+    padding: 0px 2rem;
+}
+
+.nav__logo {
+    margin: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+  
+  .nav__logo div {
+    width: 40px;
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    font-size: 1.5rem;
+    line-height: 1rem;
+    color: var(--white);
+    background-color: var(--primary-color);
+    border-radius: 100%;
+  }
+   a {
+    text-decoration: none;
+   }
+
+h2.fs-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.fieldlabels {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.input-group label,
+.input-group input {
+    width: 100%;
+}
+
+.input-group div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.input-group div input[type="checkbox"],
+input[type="radio"] {
+    margin-right: 0.5rem;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="file"],
+input[type="date"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 8px 5px;
+    margin: 8px 0;
+    border: 1px solid var(--text-light);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    background-color: var(--white);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="file"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+}
+
+input[type="button"],
+input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    background-color: var(--primary-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    background-color: var(--accent-color);
+}
+
+#loan-details {
+    margin-top: 1rem;
+}
+
+#msform {
+    max-width: var(--max-width);
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+}
+
+#progressbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 25%;
+    margin-right: 2rem;
+    list-style-type: none;
+    counter-reset: step;
+}
+
+#progressbar li {
+    position: relative;
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-light);
+    width: 100%;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-left: 4px solid var(--text-light);
+    padding-left: 1rem;
+}
+
+#progressbar li::before {
+    content: counter(step);
+    counter-increment: step;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    background: var(--text-light);
+    color: var(--white);
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+#progressbar li.completed::before {
+    content: "✔";
+    background: var(--accent-color);
+}
+
+#progressbar li.active::before {
+    background: var(--primary-color);
+}
+
+#progressbar li.active,
+#progressbar li.completed {
+    color: var(--primary-color);
+    border-left-color: var(--primary-color);
+}
+
+#progressbar li::after {
+    content: '';
+    position: absolute;
+    left: 14px;
+    bottom: -16px;
+    width: 2px;
+    height: 20px;
+    background-color: var(--primary-color);
+}
+
+#progressbar li:last-child::after {
+    display: none;
+}
+
+fieldset {
+    display: none;
+    border: none;
+    padding: 0;
+    width: 75%;
+}
+
+fieldset.show {
+    display: block;
+}
+
+.form-card {
+    padding: 20px;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .input-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    #msform {
+        padding: 2rem;
+        flex-direction: column;
+    }
+
+    fieldset {
+        width: 100%;
+    }
+}
