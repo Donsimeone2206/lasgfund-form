@@ -1,16 +1,18 @@
 $(document).ready(function () {
-    var current_fs, next_fs, previous_fs; // fieldsets
-    var opacity;
-    var isValid;
+    let current_fs, next_fs, previous_fs; // fieldsets
+    let opacity;
+    let isValid;
+
+    
 
     // Function to get data from the form fields and populate the corresponding review section
     function populateReviewSection(step) {
-        var reviewContent = "";
-        var stepFields = $(`fieldset[data-step='${step}']`).find(':input').not(':button');
+        let reviewContent = "";
+        let stepFields = $(`fieldset[data-step='${step}']`).find(':input').not(':button');
 
         stepFields.each(function () {
-            var label = $(this).siblings('label').text() || $(this).closest('.input-group').find('label').text();
-            var value;
+            let label = $(this).siblings('label').text() || $(this).closest('.input-group').find('label').text();
+            let value;
 
             if ($(this).is(':radio')) {
                 // For radio buttons, display the checked value
@@ -82,8 +84,8 @@ $(document).ready(function () {
 
     // Handle edit button clicks in review section
     $(".edit-step").click(function () {
-        var step = $(this).data('step');
-        var target_fs = $(`fieldset[data-step='${step}']`);
+        let step = $(this).data('step');
+        let target_fs = $(`fieldset[data-step='${step}']`);
 
         $('.review').hide();
         target_fs.show();
@@ -93,7 +95,7 @@ $(document).ready(function () {
     $("form").on("submit", function (event) {
         // event.preventDefault(); // prevent form submission for demo
 
-        for (var step = 1; step <= 6; step++) {
+        for (let step = 1; step <= 6; step++) {
             populateReviewSection(step);
         }
 

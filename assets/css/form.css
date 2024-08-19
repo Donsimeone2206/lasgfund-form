@@ -23,9 +23,9 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
-  }
-  
-  .nav__logo div {
+}
+
+.nav__logo div {
     width: 40px;
     aspect-ratio: 1;
     display: grid;
@@ -35,10 +35,11 @@ body {
     color: var(--white);
     background-color: var(--primary-color);
     border-radius: 100%;
-  }
-   a {
+}
+
+a {
     text-decoration: none;
-   }
+}
 
 h2.fs-title {
     font-size: 2rem;
@@ -261,3 +262,127 @@ fieldset.show {
 
 
 /* Responsive screens*/
+
+@media (max-width: 767px) {
+    .form-card {
+        padding: 10px 0;
+    }
+    .input-row {
+        display: block!important;
+        padding-left: 0px!important;
+    }
+
+    .input-group label,
+    .input-group input,
+    select {
+        margin-left: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="file"],
+    input[type="date"],
+    input[type="tel"] {
+        width: 90%;
+    }
+
+    select {
+        width: 95%;
+    }
+
+}
+
+@media (max-width: 768px) {
+    h2.fs-title {
+        font-size: 1rem;
+        padding-left: 6px;
+    }
+
+    #msform {
+        /* padding: 0; */
+        flex-direction: column;
+    }
+
+    #progressbar {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+
+    }
+
+    #progressbar li {
+        font-size: 10px;
+        font-weight: 400;
+        border-bottom: 4px solid var(--text-light);
+        border-left: none;
+        padding-left: 0;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+
+    }
+
+    #progressbar li span {
+        margin: 12px auto 0;
+        display: inline-block
+    }
+
+    #progressbar li.active {
+        border-bottom-color: var(--primary-color);
+
+    }
+
+    #progressbar li::before {
+        width: 30px;
+        margin: 0 auto;
+
+    }
+
+    #progressbar li::after {
+        display: none;
+        height: 0;
+        width: 0;
+    }
+
+    .form-card {
+        margin: 2rem 0;
+        padding: 10px 0;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .input-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        margin-bottom: 1.5rem;
+        padding-left: 10px;
+    }
+
+    .fieldlabels {
+        font-weight: 400;
+        font-size: 12px;
+    }
+
+    fieldset {
+        width: 100%;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="file"],
+    input[type="date"],
+    input[type="tel"] {
+        width: 90%;
+    }
+
+    select {
+        width: 95%;
+    }
+
+}
